@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Apply</title>
+  <script type="text/javascript">
+    function outer(children) {
+      var array = Array.prototype.slice.call(children) // 此处兼容apply方法的第二个参数，类数组对象ES5.1以后
+      inner.apply(null, array);
+    }
+    function inner() {
+      console.log(arguments[0].innerHTML.match(/\S+/)[0] === '刘一');
+    }
+    setTimeout(() => {
+      outer(document.getElementById('list').children);
+    })
+  </script>
+</head>
+<body>
+  <div>
+    <ul id="list">
+      <li>刘一</li>
+      <li>陈二</li>
+      <li>张三</li>
+      <li>李四</li>
+      <li>王五</li>
+    </ul>
+  </div>
+</body>
+</html>
